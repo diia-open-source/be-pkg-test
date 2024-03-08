@@ -1,0 +1,92 @@
+{
+    "name": "@diia-inhouse/test",
+    "version": "5.1.1",
+    "description": "test-utils",
+    "main": "dist/index.js",
+    "author": "Diia",
+    "repository": "https://github.com/diia-open-source/be-pkg-test.git",
+    "types": "dist/types/index.d.ts",
+    "license": "SEE LICENCE IN LICENCE.md",
+    "scripts": {
+        "build": "tsc",
+        "prebuild": "rimraf dist",
+        "prepare": "npm run build",
+        "semantic-release": "semantic-release",
+        "start": "npm run build && node dist/index.js",
+        "lint": "eslint --ext .ts . && prettier --check .",
+        "lint-fix": "eslint --ext .ts --fix && prettier --write .",
+        "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
+        "test": "jest",
+        "test:unit": "npm run test --selectProjects unit --",
+        "find-circulars": "madge --circular --extensions ts ./"
+    },
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "./dist/index.js",
+        "./mongooseMock": "./dist/mongooseMock.js"
+    },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "dist/types/index.d.ts"
+            ],
+            "mongooseMock": [
+                "dist/types/mongooseMock.d.ts"
+            ]
+        }
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "keywords": [],
+    "dependencies": {
+        "jest-junit": "16.0.0",
+        "lodash": "4.17.21",
+        "luxon": "3.4.4"
+    },
+    "devDependencies": {
+        "@diia-inhouse/configs": "^1.27.1",
+        "@diia-inhouse/eslint-config": "^3.5.0",
+        "@diia-inhouse/types": "^5.0.1",
+        "@types/lodash": "4.14.202",
+        "@types/luxon": "3.3.5",
+        "bson": "6.2.0",
+        "mongoose": "8.0.0",
+        "ts-proto": "1.148.2",
+        "type-fest": "4.3.1"
+    },
+    "peerDependencies": {
+        "@diia-inhouse/types": ">=5.0.1",
+        "bson": ">=6.2.0",
+        "mongoose": ">=8.0.0"
+    },
+    "peerDependenciesMeta": {
+        "mongoose": {
+            "optional": true
+        }
+    },
+    "resolutions": {
+        "@babel/traverse": "7.23.2"
+    },
+    "jest": {
+        "preset": "@diia-inhouse/configs/dist/jest"
+    },
+    "commitlint": {
+        "extends": "@diia-inhouse/configs/dist/commitlint"
+    },
+    "eslintConfig": {
+        "extends": "@diia-inhouse/eslint-config"
+    },
+    "release": {
+        "extends": "@diia-inhouse/configs/dist/semantic-release/package",
+        "branches": [
+            "main"
+        ]
+    },
+    "prettier": "@diia-inhouse/eslint-config/prettier",
+    "madge": {
+        "tsConfig": "./tsconfig.json"
+    }
+}
