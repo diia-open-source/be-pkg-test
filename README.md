@@ -26,7 +26,7 @@ This repository contains the package with test utils.
 Example:
 
 ```
-git clone https://github.com/diia-open-source/pkg-test.git
+git clone https://github.com/diia-open-source/be-pkg-test.git pkg-test
 ```
 
 ---

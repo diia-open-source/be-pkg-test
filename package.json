@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "5.1.1",
+    "version": "5.1.2",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
