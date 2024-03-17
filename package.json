@@ -55,7 +55,7 @@
         "bson": "6.2.0",
         "mongoose": "8.0.0",
         "ts-proto": "1.148.2",
-        "type-fest": "4.3.1"
+        "type-fest": "4.12.0"
     },
     "peerDependencies": {
         "@diia-inhouse/types": ">=5.0.1",
