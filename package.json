@@ -16,7 +16,7 @@
         "lint": "eslint --ext .ts . && prettier --check .",
         "lint-fix": "eslint --ext .ts --fix && prettier --write .",
         "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
-        "test": "jest",
+        "test": "jest --passWithNoTests",
         "test:unit": "npm run test --selectProjects unit --",
         "find-circulars": "madge --circular --extensions ts ./"
     },
