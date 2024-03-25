@@ -16,7 +16,7 @@
         "lint": "eslint --ext .ts . && prettier --check .",
         "lint-fix": "eslint --ext .ts --fix && prettier --write .",
         "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
-        "test": "jest",
+        "test": "jest --passWithNoTests",
         "test:unit": "npm run test --selectProjects unit --",
         "find-circulars": "madge --circular --extensions ts ./"
     },
@@ -55,7 +55,8 @@
         "bson": "6.2.0",
         "mongoose": "8.0.0",
         "ts-proto": "1.148.2",
-        "type-fest": "4.3.1"
+        "typescript": "5.2.2",
+        "type-fest": "4.8.1"
     },
     "peerDependencies": {
         "@diia-inhouse/types": ">=5.0.1",
