@@ -1,10 +1,10 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 
-import { DocStatus, DriverLicense, LicenseType } from '@diia-inhouse/types'
-
+import { DocStatus } from '../../interfaces/documents'
+import { DriverLicense, LicenseType } from '../../interfaces/documents/driverLicense'
 import photo from '../photo'
 
-export const driverLicense: DriverLicense = {
+const driverLicense: DriverLicense = {
     id: randomUUID(),
     docStatus: DocStatus.Ok,
     docNumber: 'ВХХ578221',
@@ -227,3 +227,5 @@ export const driverLicense: DriverLicense = {
         },
     },
 }
+
+export default driverLicense

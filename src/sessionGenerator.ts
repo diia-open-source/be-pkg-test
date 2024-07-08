@@ -1,4 +1,4 @@
-import { createHmac, randomUUID } from 'crypto'
+import { createHmac, randomUUID } from 'node:crypto'
 
 import { ObjectId } from 'bson'
 import { DateTime, Interval } from 'luxon'
@@ -173,6 +173,7 @@ export default class SessionGenerator {
         return { sessionType, user: result }
     }
 
+    /** @deprecated use getAcquirerSessionStringId after diia-app v15 */
     getAcquirerSession(tokenData: Partial<AcquirerTokenData> = {}): AcquirerSession {
         const sessionType = SessionType.Acquirer
         const result: AcquirerTokenData = {
@@ -188,10 +189,42 @@ export default class SessionGenerator {
         return { sessionType, acquirer: result }
     }
 
+    getAcquirerSessionStringId(tokenData: Partial<AcquirerTokenData<string>> = {}): AcquirerSession<string> {
+        const sessionType = SessionType.Acquirer
+        const result: AcquirerTokenData<string> = {
+            sessionType,
+            refreshToken: {
+                value: randomUUID(),
+                expirationTime: Date.now() + 300000,
+            },
+            _id: new ObjectId().toString(),
+            ...tokenData,
+        }
+
+        return { sessionType, acquirer: result }
+    }
+
+    /** @deprecated use getPartnerSessionStringId after diia-app v15 */
     getPartnerSession(tokenData: Partial<PartnerTokenData> = {}): PartnerSession {
         const sessionType = SessionType.Partner
         const result: PartnerTokenData = {
             _id: new ObjectId(),
+            scopes: {},
+            sessionType,
+            refreshToken: {
+                value: randomUUID(),
+                expirationTime: Date.now() + 300000,
+            },
+            ...tokenData,
+        }
+
+        return { sessionType, partner: result }
+    }
+
+    getPartnerSessionStringId(tokenData: Partial<PartnerTokenData<string>> = {}): PartnerSession<string> {
+        const sessionType = SessionType.Partner
+        const result: PartnerTokenData<string> = {
+            _id: new ObjectId().toString(),
             scopes: {},
             sessionType,
             refreshToken: {
@@ -278,28 +311,39 @@ export default class SessionGenerator {
 
     getSessionBySessionType(sessionType: SessionType, tokenData = {}, validItn = false): ActionSession | undefined {
         switch (sessionType) {
-            case SessionType.Acquirer:
+            case SessionType.Acquirer: {
                 return this.getAcquirerSession(tokenData)
-            case SessionType.CabinetUser:
+            }
+            case SessionType.CabinetUser: {
                 return this.getCabinetUserSession(tokenData, validItn)
-            case SessionType.EResident:
+            }
+            case SessionType.EResident: {
                 return this.getEResidentSession(tokenData, validItn)
-            case SessionType.EResidentApplicant:
+            }
+            case SessionType.EResidentApplicant: {
                 return this.getEResidentApplicantSession(tokenData)
-            case SessionType.Partner:
+            }
+            case SessionType.Partner: {
                 return this.getPartnerSession(tokenData)
-            case SessionType.PortalUser:
+            }
+            case SessionType.PortalUser: {
                 return this.getPortalUserSession(tokenData, validItn)
-            case SessionType.ServiceEntrance:
+            }
+            case SessionType.ServiceEntrance: {
                 return this.getServiceEntranceSession(tokenData)
-            case SessionType.ServiceUser:
+            }
+            case SessionType.ServiceUser: {
                 return this.getServiceUserSession(tokenData)
-            case SessionType.Temporary:
+            }
+            case SessionType.Temporary: {
                 return this.getTemporarySession(tokenData)
-            case SessionType.User:
+            }
+            case SessionType.User: {
                 return this.getUserSession(tokenData, validItn)
-            default:
+            }
+            default: {
                 return undefined
+            }
         }
     }
 
@@ -339,7 +383,7 @@ export default class SessionGenerator {
         const firstPart = interval.length('days').toString().padStart(5, '0')
         const secondPart = this.getItnSeqNumber(gender).toString().padStart(4, '0')
         const baseNumber = firstPart.concat(secondPart)
-        const [a, b, c, d, e, f, g, h, i] = baseNumber.split('').map((item: string) => parseInt(item, 10))
+        const [a, b, c, d, e, f, g, h, i] = baseNumber.split('').map((item: string) => Number.parseInt(item, 10))
         const checksum = -a + 5 * b + 7 * c + 9 * d + 4 * e + 6 * f + 10 * g + 5 * h + 7 * i
         const controlNumber = (checksum - 11 * Math.floor(checksum / 11)) % 10
 

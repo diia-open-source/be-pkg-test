@@ -1,10 +1,10 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 
-import { DocStatus, InternalPassport, PassportType } from '@diia-inhouse/types'
-
+import { DocStatus } from '../../interfaces/documents'
+import { InternalPassport, PassportType } from '../../interfaces/documents/internalPassport'
 import photo from '../photo'
 
-export const internalPassport: InternalPassport = {
+const internalPassport: InternalPassport = {
     docStatus: DocStatus.Ok,
     docNumber: '000031886',
     number: '000031886',
@@ -38,3 +38,5 @@ export const internalPassport: InternalPassport = {
         creationDate: expect.any(String),
     },
 }
+
+export default internalPassport

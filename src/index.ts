@@ -5,8 +5,6 @@ import SessionGenerator from './sessionGenerator'
 
 export { mockClass, mockAnyClass, mockInstance } from './mock'
 
-export { SessionGenerator }
-
 export default class TestKit {
     readonly session: SessionGenerator
 
@@ -23,3 +21,5 @@ export default class TestKit {
         this.public = new PublicServiceGenerator()
     }
 }
+
+export { default as SessionGenerator } from './sessionGenerator'

@@ -1,10 +1,10 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 
-import { DocStatus, ForeignPassport, PassportGenderEN, PassportGenderUA, PassportType } from '@diia-inhouse/types'
-
+import { DocStatus } from '../../interfaces/documents'
+import { ForeignPassport, PassportGenderEN, PassportGenderUA, PassportType } from '../../interfaces/documents/foreignPassport'
 import photo from '../photo'
 
-export const foreignPassport: ForeignPassport = {
+const foreignPassport: ForeignPassport = {
     docStatus: DocStatus.Ok,
     docNumber: 'FC449752',
     number: '449752',
@@ -41,3 +41,5 @@ export const foreignPassport: ForeignPassport = {
         creationDate: '17.02.2022',
     },
 }
+
+export default foreignPassport

@@ -1,12 +1,10 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "5.1.2",
+    "version": "6.4.0",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
-    "repository": "https://github.com/diia-open-source/be-pkg-test.git",
     "types": "dist/types/index.d.ts",
-    "license": "SEE LICENCE IN LICENCE.md",
     "scripts": {
         "build": "tsc",
         "prebuild": "rimraf dist",
@@ -24,8 +22,16 @@
         "dist"
     ],
     "exports": {
-        ".": "./dist/index.js",
-        "./mongooseMock": "./dist/mongooseMock.js"
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/types/index.d.ts"
+        },
+        "./mongooseMock": {
+            "import": "./dist/mongooseMock.js",
+            "require": "./dist/mongooseMock.js",
+            "types": "./dist/types/mongooseMock.d.ts"
+        }
     },
     "typesVersions": {
         "*": {
@@ -42,23 +48,28 @@
     },
     "keywords": [],
     "dependencies": {
+        "glob": "10.4.2",
         "jest-junit": "16.0.0",
         "lodash": "4.17.21",
-        "luxon": "3.4.4"
+        "luxon": "3.4.4",
+        "type-fest": "4.18.3",
+        "jest-mock": "29.7.0"
     },
     "devDependencies": {
-        "@diia-inhouse/configs": "^1.27.1",
-        "@diia-inhouse/eslint-config": "^3.5.0",
-        "@diia-inhouse/types": "^5.0.1",
-        "@types/lodash": "4.14.202",
-        "@types/luxon": "3.3.5",
+        "@diia-inhouse/configs": "1.32.0",
+        "@diia-inhouse/eslint-config": "5.1.0",
+        "@diia-inhouse/types": "6.33.0",
+        "@types/lodash": "4.17.6",
+        "@types/luxon": "3.4.2",
         "bson": "6.2.0",
-        "mongoose": "8.0.0",
-        "ts-proto": "1.148.2",
-        "type-fest": "4.3.1"
+        "lockfile-lint": "4.14.0",
+        "madge": "7.0.0",
+        "mongoose": "8.4.4",
+        "rimraf": "5.0.7",
+        "ts-proto": "1.181.0"
     },
     "peerDependencies": {
-        "@diia-inhouse/types": ">=5.0.1",
+        "@diia-inhouse/types": ">=3.4.0",
         "bson": ">=6.2.0",
         "mongoose": ">=8.0.0"
     },
@@ -88,5 +99,7 @@
     "prettier": "@diia-inhouse/eslint-config/prettier",
     "madge": {
         "tsConfig": "./tsconfig.json"
-    }
+    },
+    "repository": "https://github.com/diia-open-source/be-pkg-test.git",
+    "license": "SEE LICENCE IN LICENCE.md"
 }

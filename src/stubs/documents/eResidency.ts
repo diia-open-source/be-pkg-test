@@ -1,8 +1,8 @@
-import { DocStatus, EResidency, ResidentshipStatus } from '@diia-inhouse/types'
-
+import { DocStatus } from '../../interfaces/documents'
+import { EResidency, ResidentshipStatus } from '../../interfaces/documents/eResidency'
 import signature from '../signature'
 
-export const eResidency: EResidency = {
+const eResidency: EResidency = {
     birthCityEN: 'Bratislava',
     birthCityUA: 'Братислава',
     birthCountryCode: 'SVK',
@@ -40,3 +40,5 @@ export const eResidency: EResidency = {
     residenceApartment: '',
     residencePostalCode: '',
 }
+
+export default eResidency

@@ -1,5 +1,4 @@
 import {
-    PublicServiceCode,
     PublicServiceContextMenu,
     PublicServiceContextMenuType,
     PublicServiceSettings,
@@ -15,8 +14,8 @@ export default class PublicServiceGenerator {
     getPublicServiceSettings(serviceSettings: Partial<PublicServiceSettings> = {}): PublicServiceSettings {
         return {
             id: '123',
-            code: PublicServiceCode.criminalRecordCertificate,
-            name: 'criminalRecordCertificate',
+            code: 'penalties',
+            name: 'penalties',
             status: PublicServiceStatus.active,
             sessionTypes: [SessionType.User],
             contextMenu: this.getPublicServiceContextMenu(),

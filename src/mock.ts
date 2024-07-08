@@ -5,7 +5,7 @@ export function mockClass<T extends ClassLike>(classToMock: T): jest.MockedClass
 
     const metadata = mocker.getMetadata(classToMock)
     if (!metadata) {
-        throw Error(`Cannot find metadata to mock ${classToMock.name}`)
+        throw new Error(`Cannot find metadata to mock ${classToMock.name}`)
     }
 
     return <jest.MockedClass<T>>mocker.generateFromMetadata<T>(metadata)
@@ -25,9 +25,9 @@ export function mockInstance<T extends ClassLike>(
 
     const keys = <(keyof T)[]>Object.keys(props)
 
-    keys.forEach((key) => {
+    for (const key of keys) {
         Object.defineProperty(mockedInstance, key, { value: props[key] })
-    })
+    }
 
     return mockedInstance
 }
