@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "6.4.0",
+    "version": "6.6.4",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
@@ -56,17 +56,17 @@
         "jest-mock": "29.7.0"
     },
     "devDependencies": {
-        "@diia-inhouse/configs": "1.32.0",
+        "@diia-inhouse/configs": "2.2.0",
         "@diia-inhouse/eslint-config": "5.1.0",
         "@diia-inhouse/types": "6.33.0",
-        "@types/lodash": "4.17.6",
+        "@types/lodash": "4.17.12",
         "@types/luxon": "3.4.2",
         "bson": "6.2.0",
         "lockfile-lint": "4.14.0",
         "madge": "7.0.0",
         "mongoose": "8.4.4",
         "rimraf": "5.0.7",
-        "ts-proto": "1.181.0"
+        "ts-proto": "1.181.2"
     },
     "peerDependencies": {
         "@diia-inhouse/types": ">=3.4.0",
@@ -79,7 +79,7 @@
         }
     },
     "resolutions": {
-        "@babel/traverse": "7.23.2"
+        "@babel/traverse": "7.25.9"
     },
     "jest": {
         "preset": "@diia-inhouse/configs/dist/jest"

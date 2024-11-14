@@ -34,8 +34,8 @@ const internalPassport: InternalPassport = {
     department: '1455',
     taxpayerCard: {
         status: 1014,
-        number: expect.any(String),
-        creationDate: expect.any(String),
+        number: '1234567890',
+        creationDate: '01.01.2024',
     },
 }
 
