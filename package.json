@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "6.6.4",
+    "version": "7.2.0",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
@@ -11,15 +11,14 @@
         "prepare": "npm run build",
         "semantic-release": "semantic-release",
         "start": "npm run build && node dist/index.js",
-        "lint": "eslint --ext .ts . && prettier --check .",
-        "lint-fix": "eslint --ext .ts --fix && prettier --write .",
+        "lint": "eslint . && prettier --check .",
+        "lint-fix": "eslint . --fix && prettier --write .",
         "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
-        "test": "jest",
-        "test:unit": "npm run test --selectProjects unit --",
         "find-circulars": "madge --circular --extensions ts ./"
     },
     "files": [
-        "dist"
+        "dist",
+        "vitest"
     ],
     "exports": {
         ".": {
@@ -27,53 +26,56 @@
             "require": "./dist/index.js",
             "types": "./dist/types/index.d.ts"
         },
-        "./mongooseMock": {
-            "import": "./dist/mongooseMock.js",
-            "require": "./dist/mongooseMock.js",
-            "types": "./dist/types/mongooseMock.d.ts"
+        "./vitest": {
+            "default": "./vitest/extend-expect.ts"
         }
     },
     "typesVersions": {
         "*": {
             "*": [
                 "dist/types/index.d.ts"
-            ],
-            "mongooseMock": [
-                "dist/types/mongooseMock.d.ts"
             ]
         }
     },
     "engines": {
-        "node": ">=18"
+        "node": ">=22"
     },
     "keywords": [],
     "dependencies": {
-        "glob": "10.4.2",
-        "jest-junit": "16.0.0",
-        "lodash": "4.17.21",
-        "luxon": "3.4.4",
-        "type-fest": "4.18.3",
-        "jest-mock": "29.7.0"
+        "@diia-inhouse/design-system": "3.0.1",
+        "@vitest/expect": "4.0.16",
+        "glob": "10.5.0",
+        "lodash": "4.17.23",
+        "luxon": "3.7.2",
+        "nock": "13.5.6",
+        "superstruct": "2.0.2",
+        "type-fest": "4.41.0",
+        "vitest": "4.0.16"
     },
     "devDependencies": {
-        "@diia-inhouse/configs": "2.2.0",
-        "@diia-inhouse/eslint-config": "5.1.0",
-        "@diia-inhouse/types": "6.33.0",
-        "@types/lodash": "4.17.12",
-        "@types/luxon": "3.4.2",
-        "bson": "6.2.0",
-        "lockfile-lint": "4.14.0",
-        "madge": "7.0.0",
-        "mongoose": "8.4.4",
-        "rimraf": "5.0.7",
-        "ts-proto": "1.181.2"
+        "@diia-inhouse/configs": "6.1.1",
+        "@diia-inhouse/eslint-config": "8.2.4",
+        "@diia-inhouse/types": "11.3.0",
+        "@types/lodash": "4.17.21",
+        "@types/luxon": "3.7.1",
+        "bson": "6.10.4",
+        "drizzle-orm": "0.45.1",
+        "lockfile-lint": "4.14.1",
+        "madge": "8.0.0",
+        "mongoose": "8.20.4",
+        "rimraf": "6.1.2",
+        "typescript": "5.9.3"
     },
     "peerDependencies": {
-        "@diia-inhouse/types": ">=3.4.0",
+        "@diia-inhouse/types": ">=10.0.11",
         "bson": ">=6.2.0",
+        "drizzle-orm": ">=0.38.2",
         "mongoose": ">=8.0.0"
     },
     "peerDependenciesMeta": {
+        "drizzle-orm": {
+            "optional": true
+        },
         "mongoose": {
             "optional": true
         }
@@ -81,14 +83,8 @@
     "resolutions": {
         "@babel/traverse": "7.25.9"
     },
-    "jest": {
-        "preset": "@diia-inhouse/configs/dist/jest"
-    },
     "commitlint": {
         "extends": "@diia-inhouse/configs/dist/commitlint"
-    },
-    "eslintConfig": {
-        "extends": "@diia-inhouse/eslint-config"
     },
     "release": {
         "extends": "@diia-inhouse/configs/dist/semantic-release/package",

@@ -1,15 +1,18 @@
 import { randomUUID } from 'node:crypto'
 
-import { DocStatus } from '../../interfaces/documents'
+import { DocStatus, OwnerType } from '../../interfaces/documents'
 import { ForeignPassport, PassportGenderEN, PassportGenderUA, PassportType } from '../../interfaces/documents/foreignPassport'
 import photo from '../photo'
+
+const passportId = randomUUID()
+const passportNumber = '449752'
 
 const foreignPassport: ForeignPassport = {
     docStatus: DocStatus.Ok,
     docNumber: 'FC449752',
-    number: '449752',
+    number: passportNumber,
     series: 'FC',
-    id: randomUUID(),
+    id: passportId,
     lastNameUA: 'Дія',
     firstNameUA: 'Надія',
     middleNameUA: '',
@@ -39,6 +42,19 @@ const foreignPassport: ForeignPassport = {
         status: 1014,
         number: '01234567890',
         creationDate: '17.02.2022',
+    },
+    baseData: {
+        id: passportId,
+        number: passportNumber,
+        status: DocStatus.Ok,
+        name: 'Закордонний паспорт',
+        documentType: 'foreign-passport',
+        documentTypeCamelCase: 'foreignPassport',
+        ownerType: OwnerType.owner,
+        /** iso */
+        issuedAt: '2016-12-05',
+        /** iso */
+        expiresAt: '2026-12-05',
     },
 }
 

@@ -1,6 +1,5 @@
+import { DocStatus, DocumentBaseData, DocumentMetaData, DocumentTicker, Localization, NameValue } from '.'
 import { TaxpayerCardInDocument } from './taxpayerCard'
-
-import { DocStatus, DocumentMetaData, DocumentTicker, Localization, NameValue } from '.'
 
 export enum PassportGenderEN {
     F = 'F',
@@ -18,6 +17,7 @@ export enum PassportType {
 }
 
 export interface BasePassport extends DocumentMetaData {
+    baseData: DocumentBaseData
     id: string
     docNumber: string
     series?: string

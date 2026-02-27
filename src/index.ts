@@ -3,8 +3,6 @@ import PublicServiceGenerator from './publicServiceGenerator'
 import RandomGenerator from './randomGenerator'
 import SessionGenerator from './sessionGenerator'
 
-export { mockClass, mockAnyClass, mockInstance } from './mock'
-
 export default class TestKit {
     readonly session: SessionGenerator
 
@@ -23,3 +21,5 @@ export default class TestKit {
 }
 
 export { default as SessionGenerator } from './sessionGenerator'
+
+export { buildDbUtilsFn } from './dbUtilsBuilder'

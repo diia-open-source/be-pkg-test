@@ -5,7 +5,7 @@ import documents from './stubs/documents'
 
 export default class DocumentsGenerator {
     generateDocument<T>(type: string, data?: PartialDeep<T>): T {
-        const document = <T | undefined>documents[camelCase(type)]
+        const document = documents[camelCase(type)] as T | undefined
         if (!document) {
             throw new Error(`Document ${type} is not supported at the moment. You can generate those documents [${Object.keys(documents)}]`)
         }

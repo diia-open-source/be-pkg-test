@@ -1,14 +1,17 @@
 import { randomUUID } from 'node:crypto'
 
-import { DocStatus } from '../../interfaces/documents'
+import { DocStatus, OwnerType } from '../../interfaces/documents'
 import { InternalPassport, PassportType } from '../../interfaces/documents/internalPassport'
 import photo from '../photo'
+
+const passportId = randomUUID()
+const passportNumber = '000031886'
 
 const internalPassport: InternalPassport = {
     docStatus: DocStatus.Ok,
     docNumber: '000031886',
-    number: '000031886',
-    id: randomUUID(),
+    number: passportNumber,
+    id: passportId,
     lastNameUA: 'Дія',
     firstNameUA: 'Надія',
     middleNameUA: 'Володимирівна',
@@ -36,6 +39,19 @@ const internalPassport: InternalPassport = {
         status: 1014,
         number: '1234567890',
         creationDate: '01.01.2024',
+    },
+    baseData: {
+        id: passportId,
+        number: passportNumber,
+        status: DocStatus.Ok,
+        name: 'Паспорт громадянина України',
+        documentType: 'internal-passport',
+        documentTypeCamelCase: 'idCard',
+        ownerType: OwnerType.owner,
+        /** iso */
+        issuedAt: '2016-03-09',
+        /** iso */
+        expiresAt: '2026-03-09',
     },
 }
 

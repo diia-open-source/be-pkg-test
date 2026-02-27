@@ -9,8 +9,8 @@ for (const fileName of globSync(__dirname + '/**.js')) {
     const { name: fileNameWithoutExtension } = path.parse(fileName)
 
     if (fileNameWithoutExtension !== selfFileName) {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        documents[fileNameWithoutExtension] = require(fileName).default
+        // eslint-disable-next-line security/detect-non-literal-require
+        documents[fileNameWithoutExtension] = require(fileName).default // nosemgrep: eslint.detect-non-literal-require
     }
 }
 

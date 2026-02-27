@@ -11,8 +11,6 @@ import {
     AppUserActionHeaders,
     AuthDocumentType,
     AuthEntryPoint,
-    CabinetUserSession,
-    CabinetUserTokenData,
     DiiaOfficeStatus,
     DiiaOfficeUserSession,
     EResidentApplicantSession,
@@ -44,9 +42,9 @@ import { GetUserActionArgumentsOps, IdentifierOps } from './interfaces'
 import RandomGenerator from './randomGenerator'
 
 export default class SessionGenerator {
-    constructor(private readonly random: RandomGenerator) {}
-
     private readonly dateFormat = 'dd.MM.yyyy'
+
+    constructor(private readonly random: RandomGenerator) {}
 
     getUserActionArguments(
         user: Partial<UserTokenData> = {},
@@ -56,6 +54,7 @@ export default class SessionGenerator {
         return {
             session: this.getUserSession(user, ops.validItn),
             headers: this.getHeaders(headers),
+            params: [],
         }
     }
 
@@ -113,25 +112,6 @@ export default class SessionGenerator {
         }
     }
 
-    getCabinetUserSession(tokenData: Partial<CabinetUserTokenData> = {}, validItn = false): CabinetUserSession {
-        const sessionType = SessionType.CabinetUser
-        const userData = this.getUserData(tokenData, validItn)
-        const { itn } = userData
-        const result: CabinetUserTokenData = {
-            ...userData,
-            mobileUid: randomUUID(),
-            identifier: this.createIdentifier(itn),
-            sessionType,
-            refreshToken: {
-                value: randomUUID(),
-                expirationTime: Date.now() + 300000,
-            },
-            ...tokenData,
-        }
-
-        return { sessionType, user: result }
-    }
-
     getEResidentSession(tokenData: Partial<EResidentTokenData> = {}, validItn = false): EResidentSession {
         const sessionType = SessionType.EResident
         const userData = this.getUserData(tokenData, validItn)
@@ -182,16 +162,16 @@ export default class SessionGenerator {
                 value: randomUUID(),
                 expirationTime: Date.now() + 300000,
             },
-            _id: new ObjectId(),
+            _id: new ObjectId().toString(),
             ...tokenData,
         }
 
         return { sessionType, acquirer: result }
     }
 
-    getAcquirerSessionStringId(tokenData: Partial<AcquirerTokenData<string>> = {}): AcquirerSession<string> {
+    getAcquirerSessionStringId(tokenData: Partial<AcquirerTokenData> = {}): AcquirerSession {
         const sessionType = SessionType.Acquirer
-        const result: AcquirerTokenData<string> = {
+        const result: AcquirerTokenData = {
             sessionType,
             refreshToken: {
                 value: randomUUID(),
@@ -208,7 +188,7 @@ export default class SessionGenerator {
     getPartnerSession(tokenData: Partial<PartnerTokenData> = {}): PartnerSession {
         const sessionType = SessionType.Partner
         const result: PartnerTokenData = {
-            _id: new ObjectId(),
+            _id: new ObjectId().toString(),
             scopes: {},
             sessionType,
             refreshToken: {
@@ -221,9 +201,9 @@ export default class SessionGenerator {
         return { sessionType, partner: result }
     }
 
-    getPartnerSessionStringId(tokenData: Partial<PartnerTokenData<string>> = {}): PartnerSession<string> {
+    getPartnerSessionStringId(tokenData: Partial<PartnerTokenData> = {}): PartnerSession {
         const sessionType = SessionType.Partner
-        const result: PartnerTokenData<string> = {
+        const result: PartnerTokenData = {
             _id: new ObjectId().toString(),
             scopes: {},
             sessionType,
@@ -246,6 +226,8 @@ export default class SessionGenerator {
                 expirationTime: Date.now() + 300000,
             },
             mobileUid: randomUUID(),
+            jti: randomUUID(),
+            scope: [],
             ...tokenData,
         }
 
@@ -255,7 +237,7 @@ export default class SessionGenerator {
     getServiceEntranceSession(tokenData: Partial<ServiceEntranceTokenData> = {}): ServiceEntranceSession {
         const sessionType = SessionType.ServiceEntrance
         const result: ServiceEntranceTokenData = {
-            acquirerId: new ObjectId(),
+            acquirerId: new ObjectId().toString(),
             branchHashId: randomUUID(),
             offerHashId: randomUUID(),
             offerRequestHashId: randomUUID(),
@@ -313,9 +295,6 @@ export default class SessionGenerator {
         switch (sessionType) {
             case SessionType.Acquirer: {
                 return this.getAcquirerSession(tokenData)
-            }
-            case SessionType.CabinetUser: {
-                return this.getCabinetUserSession(tokenData, validItn)
             }
             case SessionType.EResident: {
                 return this.getEResidentSession(tokenData, validItn)

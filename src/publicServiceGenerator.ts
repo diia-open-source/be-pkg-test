@@ -3,8 +3,7 @@ import {
     PublicServiceContextMenuType,
     PublicServiceSettings,
     PublicServiceStatus,
-    SessionType,
-} from '@diia-inhouse/types'
+} from '@diia-inhouse/design-system'
 
 export default class PublicServiceGenerator {
     getPublicServiceContextMenu(contextMenuItems: PublicServiceContextMenu[] = []): PublicServiceContextMenu[] {
@@ -17,10 +16,8 @@ export default class PublicServiceGenerator {
             code: 'penalties',
             name: 'penalties',
             status: PublicServiceStatus.active,
-            sessionTypes: [SessionType.User],
             contextMenu: this.getPublicServiceContextMenu(),
             categories: [],
-            segments: [],
             sortOrder: 0,
             locales: {},
             ...serviceSettings,

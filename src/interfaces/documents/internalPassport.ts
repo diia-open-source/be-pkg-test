@@ -1,4 +1,4 @@
-import { DocStatus, DocumentMetaData, Localization } from '.'
+import { DocStatus, DocumentBaseData, DocumentMetaData, Localization } from '.'
 
 export enum PassportGenderEN {
     F = 'F',
@@ -17,6 +17,7 @@ export enum PassportType {
 
 export interface BasePassport extends DocumentMetaData {
     id: string
+    baseData: DocumentBaseData
     docNumber: string
     series?: string
     number: string

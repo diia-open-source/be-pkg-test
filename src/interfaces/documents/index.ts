@@ -3,6 +3,22 @@ export enum OwnerType {
     properUser = 'properUser',
 }
 
+export interface DocumentBaseData {
+    id: string
+    number: string
+    status: number
+    name: string
+    documentType: string
+    documentTypeCamelCase: string
+    ownerType: OwnerType
+    listName?: string
+    subtype?: string
+    /** iso */
+    issuedAt?: string
+    /** iso */
+    expiresAt?: string
+}
+
 export interface NameValue {
     name: string
     value: string
