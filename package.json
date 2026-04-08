@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "7.3.9",
+    "version": "7.3.10",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
@@ -59,7 +59,7 @@
         "@types/lodash": "4.17.21",
         "@types/luxon": "3.7.1",
         "bson": "6.10.4",
-        "drizzle-orm": "0.45.1",
+        "drizzle-orm": "0.45.2",
         "lockfile-lint": "4.14.1",
         "madge": "8.0.0",
         "mongoose": "8.20.4",
@@ -96,6 +96,6 @@
     "madge": {
         "tsConfig": "./tsconfig.json"
     },
-    "repository": "https://github.com/diia-open-source/be-pkg-test.git",
+    "repository": "https://github.com/diia-open-source/be-pkg-test",
     "license": "SEE LICENCE IN LICENCE.md"
 }
