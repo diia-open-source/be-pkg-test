@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "7.3.15",
+    "version": "7.3.16",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
@@ -42,7 +42,7 @@
     },
     "keywords": [],
     "dependencies": {
-        "@diia-inhouse/design-system": "3.25.0",
+        "@diia-inhouse/design-system": "3.26.0",
         "@vitest/expect": "4.0.16",
         "glob": "10.5.0",
         "lodash": "4.18.1",
