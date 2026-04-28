@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "7.3.20",
+    "version": "7.3.21",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
@@ -42,7 +42,7 @@
     },
     "keywords": [],
     "dependencies": {
-        "@diia-inhouse/design-system": "3.27.1",
+        "@diia-inhouse/design-system": "3.27.2",
         "@vitest/expect": "4.0.16",
         "glob": "10.5.0",
         "lodash": "4.18.1",
@@ -54,7 +54,7 @@
     },
     "devDependencies": {
         "@diia-inhouse/configs": "6.1.1",
-        "@diia-inhouse/eslint-config": "8.8.1",
+        "@diia-inhouse/eslint-config": "8.8.2",
         "@diia-inhouse/types": "11.7.0",
         "@types/lodash": "4.17.21",
         "@types/luxon": "3.7.1",
