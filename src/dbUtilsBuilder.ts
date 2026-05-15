@@ -137,7 +137,7 @@ export function buildDbUtilsFn<
                     throw new Error(`No postgres reference for ${entity}`)
                 }
 
-                const column = (pgTable as any)[by]
+                const column = pgTable[by]
                 const result = await db.delete(pgTable).where(inArray(column, values)).returning()
 
                 return result as TEntitySchema[TEntity & TSavableEntity][]
@@ -171,7 +171,7 @@ export function buildDbUtilsFn<
                     throw new Error(`No postgres reference for ${entity}`)
                 }
 
-                const column = (pgTable as any)[by]
+                const column = pgTable[by]
                 const result = await db.update(pgTable).set(data).where(inArray(column, values)).returning()
 
                 return result as TEntitySchema[TEntity & TSavableEntity][]

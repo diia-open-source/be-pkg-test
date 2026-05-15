@@ -1,5 +1,5 @@
-import { DocStatus } from '../../interfaces/documents'
-import { TaxpayerCard } from '../../interfaces/documents/taxpayerCard'
+import { DocStatus } from '../../interfaces/documents/index.js'
+import { TaxpayerCard } from '../../interfaces/documents/taxpayerCard.js'
 
 const taxpayerCard: TaxpayerCard = {
     docStatus: DocStatus.Ok,

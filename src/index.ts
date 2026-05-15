@@ -1,7 +1,7 @@
-import DocumentsGenerator from './documentsGenerator'
-import PublicServiceGenerator from './publicServiceGenerator'
-import RandomGenerator from './randomGenerator'
-import SessionGenerator from './sessionGenerator'
+import DocumentsGenerator from './documentsGenerator.js'
+import PublicServiceGenerator from './publicServiceGenerator.js'
+import RandomGenerator from './randomGenerator.js'
+import SessionGenerator from './sessionGenerator.js'
 
 export default class TestKit {
     readonly session: SessionGenerator
@@ -20,6 +20,6 @@ export default class TestKit {
     }
 }
 
-export { default as SessionGenerator } from './sessionGenerator'
+export { default as SessionGenerator } from './sessionGenerator.js'
 
-export { buildDbUtilsFn } from './dbUtilsBuilder'
+export { buildDbUtilsFn } from './dbUtilsBuilder.js'

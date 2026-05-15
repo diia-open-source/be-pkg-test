@@ -1,4 +1,4 @@
-import { createHmac, randomUUID } from 'node:crypto'
+import { createHmac, randomInt, randomUUID } from 'node:crypto'
 
 import { ObjectId } from 'bson'
 import { DateTime, Interval } from 'luxon'
@@ -38,8 +38,8 @@ import {
     UserTokenData,
 } from '@diia-inhouse/types'
 
-import { GetUserActionArgumentsOps, IdentifierOps } from './interfaces'
-import RandomGenerator from './randomGenerator'
+import { GetUserActionArgumentsOps, IdentifierOps } from './interfaces/index.js'
+import RandomGenerator from './randomGenerator.js'
 
 export default class SessionGenerator {
     private readonly dateFormat = 'dd.MM.yyyy'
@@ -354,7 +354,7 @@ export default class SessionGenerator {
 
     generateItn(birthDate: string, gender: Gender, validItn: boolean): string {
         if (!validItn) {
-            return Math.floor(Math.random() * 10000000000).toString()
+            return randomInt(10000000000).toString()
         }
 
         const fromDate = DateTime.fromFormat('31.12.1899', this.dateFormat)

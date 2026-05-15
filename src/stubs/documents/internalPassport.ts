@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto'
 
-import { DocStatus, OwnerType } from '../../interfaces/documents'
-import { InternalPassport, PassportType } from '../../interfaces/documents/internalPassport'
-import photo from '../photo'
+import { DocStatus, OwnerType } from '../../interfaces/documents/index.js'
+import { InternalPassport, PassportType } from '../../interfaces/documents/internalPassport.js'
+import photo from '../photo.js'
 
 const passportId = randomUUID()
 const passportNumber = '000031886'

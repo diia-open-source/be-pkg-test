@@ -1,15 +1,19 @@
+import { createRequire } from 'node:module'
 import path from 'node:path'
 
 import { globSync } from 'glob'
 
-const documents: Record<string, unknown> = {}
-const { name: selfFileName } = path.parse(__filename)
+const currentFile = import.meta.filename
+const currentDir = import.meta.dirname
+const require = createRequire(import.meta.url)
 
-for (const fileName of globSync(__dirname + '/**.js')) {
+const documents: Record<string, unknown> = {}
+const { name: selfFileName } = path.parse(currentFile)
+
+for (const fileName of globSync(`${currentDir}/**.js`)) {
     const { name: fileNameWithoutExtension } = path.parse(fileName)
 
     if (fileNameWithoutExtension !== selfFileName) {
-        // eslint-disable-next-line security/detect-non-literal-require
         documents[fileNameWithoutExtension] = require(fileName).default // nosemgrep: eslint.detect-non-literal-require
     }
 }

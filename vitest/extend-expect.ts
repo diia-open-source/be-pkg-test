@@ -1,11 +1,10 @@
-/* eslint-disable unicorn/filename-case */
 import { expect } from 'vitest'
 
 import * as matchers from './matchers'
 
 expect.extend(matchers)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// oxlint-disable-next-line typescript/no-explicit-any
 export interface CustomMatchers<R = any> {
     toInterceptorsBeDone(): R
 

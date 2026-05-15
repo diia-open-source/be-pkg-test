@@ -1,5 +1,5 @@
 import { DocStatus, DocumentBaseData, DocumentMetaData, DocumentTicker, Localization, NameValue } from '.'
-import { TaxpayerCardInDocument } from './taxpayerCard'
+import { TaxpayerCardInDocument } from './taxpayerCard.js'
 
 export enum PassportGenderEN {
     F = 'F',

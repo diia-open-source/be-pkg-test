@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto'
 
-import { DocStatus } from '../../interfaces/documents'
-import { DriverLicense, LicenseType } from '../../interfaces/documents/driverLicense'
-import photo from '../photo'
+import { DriverLicense, LicenseType } from '../../interfaces/documents/driverLicense.js'
+import { DocStatus } from '../../interfaces/documents/index.js'
+import photo from '../photo.js'
 
 const driverLicense: DriverLicense = {
     id: randomUUID(),
