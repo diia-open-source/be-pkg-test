@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.0.1",
+    "version": "8.0.2",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
@@ -56,7 +56,7 @@
         "drizzle-orm": "0.45.2",
         "lockfile-lint": "5.0.0",
         "madge": "8.0.0",
-        "mongoose": "8.20.4",
+        "mongoose": "8.22.1",
         "oxfmt": "0.48.0",
         "oxlint": "1.63.0",
         "oxlint-tsgolint": "0.22.1",
