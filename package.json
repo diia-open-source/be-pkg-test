@@ -1,13 +1,13 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.0.2",
+    "version": "8.1.4",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
     "author": "Diia",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsdown",
+        "build": "node scripts/gen-stubs-index.mjs && tsdown",
         "prebuild": "rimraf dist",
         "prepare": "npm run build",
         "semantic-release": "semantic-release",
@@ -36,7 +36,7 @@
     },
     "keywords": [],
     "dependencies": {
-        "@diia-inhouse/design-system": "4.0.4",
+        "@diia-inhouse/design-system": "4.1.0",
         "@vitest/expect": "4.1.5",
         "glob": "13.0.6",
         "lodash": "4.18.1",
@@ -48,8 +48,8 @@
     },
     "devDependencies": {
         "@diia-inhouse/configs": "7.0.0",
-        "@diia-inhouse/oxc-config": "1.9.3",
-        "@diia-inhouse/types": "13.1.1",
+        "@diia-inhouse/oxc-config": "1.10.0",
+        "@diia-inhouse/types": "13.1.3",
         "@types/lodash": "4.17.24",
         "@types/luxon": "3.7.1",
         "bson": "7.2.0",
