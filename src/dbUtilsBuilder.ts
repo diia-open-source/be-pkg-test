@@ -7,16 +7,16 @@ type DatabaseAdapterType = 'mongo' | 'postgres'
 
 type DbUtils<
     TFactory extends Record<string, (data?: any) => any>,
-    TEntitySchema extends { [K in keyof TFactory]: ReturnType<TFactory[K]> },
+    TEntitySchema extends { [K in keyof TFactory]: Awaited<ReturnType<TFactory[K]>> },
     TEntityName extends keyof TEntitySchema & keyof TFactory & string,
     TDbReference extends Partial<Record<TEntityName, Partial<Record<DatabaseAdapterType, any>>>>,
     TSavableEntity extends keyof TDbReference,
 > = {
     [K in TEntityName]: {
         seed: {
-            make: (data?: Partial<TEntitySchema[K]>) => TEntitySchema[K]
+            make: (data?: Partial<TEntitySchema[K]>) => ReturnType<TFactory[K]>
             many: (count: number) => {
-                make: (data?: Partial<TEntitySchema[K]>) => TEntitySchema[K][]
+                make: (data?: Partial<TEntitySchema[K]>) => ReturnType<TFactory[K]>[]
             } & (K extends TSavableEntity ? { save: (data?: Partial<TEntitySchema[K]>) => Promise<TEntitySchema[K][]> } : {})
         } & (K extends TSavableEntity ? { save: (data?: Partial<TEntitySchema[K]>) => Promise<TEntitySchema[K]> } : {})
     } & (K extends TSavableEntity
@@ -38,7 +38,7 @@ type DbUtilsParams = {
 
 export function buildDbUtilsFn<
     TFactory extends Record<string, (data?: any) => any>,
-    TEntitySchema extends { [K in keyof TFactory]: ReturnType<TFactory[K]> },
+    TEntitySchema extends { [K in keyof TFactory]: Awaited<ReturnType<TFactory[K]>> },
     TEntityName extends keyof TEntitySchema & keyof TFactory & string,
     TDbReference extends Partial<Record<TEntityName, Partial<Record<DatabaseAdapterType, any>>>>,
     TSavableEntity extends keyof TDbReference,
@@ -49,11 +49,11 @@ export function buildDbUtilsFn<
 
             return {
                 make: (data?: Partial<TEntitySchema[TEntity]>) => {
-                    return generator(data) as TEntitySchema[TEntity]
+                    return generator(data) as ReturnType<TFactory[TEntity]>
                 },
 
                 save: async (data?: Partial<TEntitySchema[TEntity]>) => {
-                    const value = generator(data) as TEntitySchema[TEntity]
+                    const value = (await generator(data)) as TEntitySchema[TEntity]
 
                     if (databaseAdapter === 'postgres') {
                         if (!db) {
@@ -87,13 +87,13 @@ export function buildDbUtilsFn<
 
             return {
                 make: (data?: Partial<TEntitySchema[TEntity]>) => {
-                    const values = Array.from({ length: count }).map(() => generator(data) as TEntitySchema[TEntity])
+                    const values = Array.from({ length: count }).map(() => generator(data) as ReturnType<TFactory[TEntity]>)
 
                     return values
                 },
 
                 save: async (data?: Partial<TEntitySchema[TEntity]>) => {
-                    const values = Array.from({ length: count }).map(() => generator(data) as TEntitySchema[TEntity])
+                    const values = (await Promise.all(Array.from({ length: count }).map(() => generator(data)))) as TEntitySchema[TEntity][]
 
                     if (databaseAdapter === 'postgres') {
                         if (!db) {

@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.2.30",
+    "version": "8.3.0",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
