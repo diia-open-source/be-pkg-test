@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.3.13",
+    "version": "8.3.14",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
@@ -44,7 +44,7 @@
         "nock": "14.0.15",
         "superstruct": "2.0.2",
         "type-fest": "4.41.0",
-        "vitest": "4.1.5"
+        "vitest": "4.1.11"
     },
     "devDependencies": {
         "@diia-inhouse/configs": "7.2.1",
