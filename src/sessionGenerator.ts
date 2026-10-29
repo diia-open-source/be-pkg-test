@@ -22,8 +22,6 @@ import {
     PartnerSession,
     PartnerTokenData,
     PlatformType,
-    PortalUserSession,
-    PortalUserTokenData,
     ProfileFeature,
     ServiceEntranceSession,
     ServiceEntranceTokenData,
@@ -253,29 +251,6 @@ export default class SessionGenerator {
         return { sessionType, entrance: result }
     }
 
-    getPortalUserSession(tokenData: Partial<PortalUserTokenData> = {}, validItn = false): PortalUserSession {
-        const sessionType = SessionType.PortalUser
-        const birthDate = tokenData.birthDay || this.getBirthDate()
-        const gender = this.getGender()
-        const itn = this.generateItn(birthDate, gender, validItn)
-        const result: PortalUserTokenData = {
-            sessionType,
-            refreshToken: {
-                value: randomUUID(),
-                expirationTime: Date.now() + 300000,
-            },
-            fName: 'Дія',
-            lName: 'Надія',
-            mName: 'Володимирівна',
-            itn,
-            birthDay: birthDate,
-            identifier: randomUUID(),
-            ...tokenData,
-        }
-
-        return { sessionType, user: result }
-    }
-
     getServiceUserSession(tokenData: Partial<ServiceUserTokenData> = {}): ServiceUserSession {
         const sessionType = SessionType.ServiceUser
         const result: ServiceUserTokenData = {
@@ -304,9 +279,6 @@ export default class SessionGenerator {
             }
             case SessionType.Partner: {
                 return this.getPartnerSession(tokenData)
-            }
-            case SessionType.PortalUser: {
-                return this.getPortalUserSession(tokenData, validItn)
             }
             case SessionType.ServiceEntrance: {
                 return this.getServiceEntranceSession(tokenData)
