@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.4.5",
+    "version": "8.4.6",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
@@ -47,7 +47,7 @@
         "vitest": "4.1.11"
     },
     "devDependencies": {
-        "@diia-inhouse/configs": "7.2.4",
+        "@diia-inhouse/configs": "7.2.5",
         "@diia-inhouse/oxc-config": "3.2.0",
         "@diia-inhouse/types": "14.12.1",
         "@types/lodash": "4.17.24",
