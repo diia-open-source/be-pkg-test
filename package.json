@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.4.8",
+    "version": "8.4.9",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
@@ -56,7 +56,7 @@
         "drizzle-orm": "0.45.2",
         "lockfile-lint": "5.0.0",
         "madge": "8.0.0",
-        "mongoose": "8.24.1",
+        "mongoose": "8.24.3",
         "oxfmt": "0.48.0",
         "oxlint": "1.63.0",
         "oxlint-tsgolint": "0.22.1",
@@ -85,10 +85,7 @@
         "extends": "@diia-inhouse/configs/dist/commitlint"
     },
     "release": {
-        "extends": "@diia-inhouse/configs/dist/semantic-release/package",
-        "branches": [
-            "main"
-        ]
+        "extends": "@diia-inhouse/configs/dist/semantic-release/package"
     },
     "madge": {
         "tsConfig": "./tsconfig.json"
