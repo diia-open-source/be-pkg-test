@@ -1,6 +1,6 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.4.11",
+    "version": "8.4.12",
     "type": "module",
     "description": "test-utils",
     "main": "dist/index.js",
@@ -77,9 +77,6 @@
         "mongoose": {
             "optional": true
         }
-    },
-    "resolutions": {
-        "@babel/traverse": "7.25.9"
     },
     "commitlint": {
         "extends": "@diia-inhouse/configs/dist/commitlint"
