@@ -1,26 +1,17 @@
 {
     "name": "@diia-inhouse/test",
-    "version": "8.4.14",
-    "type": "module",
+    "version": "8.4.15",
     "description": "test-utils",
-    "main": "dist/index.js",
-    "author": "Diia",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "node scripts/gen-stubs-index.mjs && tsdown",
-        "prebuild": "rimraf dist",
-        "prepare": "npm run build",
-        "semantic-release": "semantic-release",
-        "start": "npm run build && node dist/index.js",
-        "lint": "oxlint && oxfmt --check .",
-        "lint-fix": "oxlint --fix && oxfmt .",
-        "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https",
-        "find-circulars": "madge --circular --extensions ts ./"
-    },
+    "license": "SEE LICENCE IN LICENCE.md",
+    "author": "diia-team",
+    "repository": "https://github.com/diia-open-source/be-pkg-test",
     "files": [
         "dist",
         "vitest"
     ],
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -31,10 +22,16 @@
         },
         "./package.json": "./package.json"
     },
-    "engines": {
-        "node": ">=24"
+    "scripts": {
+        "build": "node scripts/gen-stubs-index.mjs && tsdown",
+        "prebuild": "rimraf dist",
+        "prepare": "npm run build",
+        "semantic-release": "semantic-release",
+        "start": "npm run build && node dist/index.js",
+        "lint": "oxlint && oxfmt --check .",
+        "lint-fix": "oxlint --fix && oxfmt .",
+        "lint:lockfile": "lockfile-lint --path package-lock.json --allowed-hosts registry.npmjs.org --validate-https"
     },
-    "keywords": [],
     "dependencies": {
         "@diia-inhouse/design-system": "5.33.2",
         "@vitest/expect": "4.1.11",
@@ -48,18 +45,17 @@
     },
     "devDependencies": {
         "@diia-inhouse/configs": "7.4.0",
-        "@diia-inhouse/oxc-config": "3.2.0",
+        "@diia-inhouse/oxc-config": "6.2.1",
         "@diia-inhouse/types": "14.13.3",
         "@types/lodash": "4.17.24",
         "@types/luxon": "3.7.1",
         "bson": "7.2.0",
         "drizzle-orm": "0.45.2",
         "lockfile-lint": "5.0.0",
-        "madge": "8.0.0",
         "mongoose": "8.24.7",
-        "oxfmt": "0.48.0",
-        "oxlint": "1.63.0",
-        "oxlint-tsgolint": "0.22.1",
+        "oxfmt": "0.74.0",
+        "oxlint": "1.89.0",
+        "oxlint-tsgolint": "7.0.2004",
         "rimraf": "6.1.3",
         "tsdown": "0.22.0",
         "typescript": "5.9.3"
@@ -84,9 +80,7 @@
     "release": {
         "extends": "@diia-inhouse/configs/dist/semantic-release/package"
     },
-    "madge": {
-        "tsConfig": "./tsconfig.json"
-    },
-    "repository": "https://github.com/diia-open-source/be-pkg-test",
-    "license": "SEE LICENCE IN LICENCE.md"
+    "engines": {
+        "node": ">=24"
+    }
 }
